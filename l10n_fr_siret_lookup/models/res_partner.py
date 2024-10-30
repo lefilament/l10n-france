@@ -13,7 +13,8 @@ from odoo.exceptions import UserError
 logger = logging.getLogger(__name__)
 try:
     from stdnum.eu.vat import check_vies
-    from stdnum.fr.siren import is_valid as siren_is_valid, to_tva as siren_to_vat
+    from stdnum.fr.siren import is_valid as siren_is_valid
+    from stdnum.fr.siren import to_tva as siren_to_vat
     from stdnum.fr.siret import is_valid as siret_is_valid
 except ImportError:
     logger.debug("Cannot import stdnum")
@@ -67,9 +68,9 @@ class ResPartner(models.Model):
         # and datefermetureunitelegale=2018-12-01 !!!
         # So I now set exclude_dead=False by default
         if exclude_dead:
-            params[
-                "q"
-            ] += " AND #null(datefermetureetablissement) AND #null(datefermetureunitelegale)"
+            params["q"] += (
+                " AND #null(datefermetureetablissement) AND #null(datefermetureunitelegale)"
+            )
         try:
             logger.info("Sending query to https://data.opendatasoft.com/api")
             logger.debug("url=%s params=%s", url, params)
