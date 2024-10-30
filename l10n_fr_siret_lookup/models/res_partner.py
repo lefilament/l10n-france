@@ -69,7 +69,7 @@ class ResPartner(models.Model):
         # So I now set exclude_dead=False by default
         if exclude_dead:
             params["q"] += (
-                " AND #null(datefermetureetablissement) AND #null(datefermetureunitelegale)"
+                " AND #null(datefermetureetablissement) AND #null(datefermetureunitelegale)"  # noqa: E501
             )
         try:
             logger.info("Sending query to https://data.opendatasoft.com/api")
@@ -169,14 +169,14 @@ class ResPartner(models.Model):
             and len(zipcode) == 5
             and zipcode[:3] in domtom2xmlid
         ):
-            country_xmlid = "base.%s" % domtom2xmlid[zipcode[:3]]
+            country_xmlid = f"base.{domtom2xmlid[zipcode[:3]]}"
             country_id = self.env.ref(country_xmlid).id
         return country_id
 
     @api.model
     def _siren2vat_vies(self, siren, raise_if_fail=False):
-        vat = "FR%s" % siren_to_vat(siren)
-        logger.info("VIES check of VAT %s" % vat)
+        vat = f"FR{siren_to_vat(siren)}"
+        logger.info("VIES check of VAT %s", vat)
         vies_res = False
         res = False
         try:
@@ -213,7 +213,7 @@ class ResPartner(models.Model):
     def _opendatasoft_get_from_siren(self, siren, vat_vies_query=True):
         if siren and siren_is_valid(siren):
             vals = self._opendatasoft_get_first_result(
-                "siren:%s AND etablissementsiege:oui" % siren,
+                f"siren:{siren} AND etablissementsiege:oui",
                 vat_vies_query=vat_vies_query,
             )
             if vals and vals.get("siren") == siren:
@@ -224,7 +224,7 @@ class ResPartner(models.Model):
     def _opendatasoft_get_from_siret(self, siret, vat_vies_query=True):
         if siret and siret_is_valid(siret):
             vals = self._opendatasoft_get_first_result(
-                "siret:%s" % siret, vat_vies_query=vat_vies_query
+                f"siret:{siret}", vat_vies_query=vat_vies_query
             )
             if vals and vals.get("siren") and vals.get("nic"):
                 vals_siret = vals["siren"] + vals["nic"]
