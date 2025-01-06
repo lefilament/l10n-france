@@ -46,6 +46,7 @@ class ResPartner(models.Model):
             "divisionunitelegale",
             "naturejuridiqueunitelegale",
             "trancheeffectifsunitelegale",
+            "etatadministratifetablissement",
         ]
 
     @api.model

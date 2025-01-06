@@ -29,9 +29,9 @@ SIRET Lookup
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This modules updates partner fields via the SIRENE database
-<https://data.opendatasoft.com>. It uses the dataset
-*economicref-france-sirene-v3* of opendatasoft
-<https://public.opendatasoft.com/explore/dataset/economicref-france-sirene-v3/information/>.
+<`https://data.opendatasoft.com\\> <https://data.opendatasoft.com\>>`__.
+It uses the dataset *economicref-france-sirene-v3* of opendatasoft
+<`https://public.opendatasoft.com/explore/dataset/economicref-france-sirene-v3/information/\\> <https://public.opendatasoft.com/explore/dataset/economicref-france-sirene-v3/information/\>>`__.
 It computes a theorical VAT number from the SIREN and then checks the
 validity of the VAT number on
 `VIES <https://ec.europa.eu/taxation_customs/vies/>`__ (if invalid, the
@@ -71,8 +71,8 @@ By default, the search field is filled with Company name. To get more
 accurate results, you may want to add the City name where the company is
 registered. Then click on *Lookup*.
 
-A list of company is displayed. You may want to click on one in order to
-see corresponding information or directly selecting company from tree
+A list of companies is displayed. You may want to click on one in order
+to see corresponding information or directly select company from list
 view. Once a company is selected, the partner information is updated and
 a message is logged in the chatter.
 

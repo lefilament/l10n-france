@@ -18,13 +18,14 @@
                 </group>
                 <group string="Search Results" name="lines">
                     <field name="line_ids" nolabel="1" colspan="2">
-                        <list>
+                        <list decoration-muted="not active">
                             <field name="name" />
                             <field name="street" optional="show" />
                             <field name="zip" optional="show" />
                             <field name="city" optional="show" />
                             <field name="country_id" optional="hide" />
                             <field name="legal_type" optional="show" />
+                            <field name="active" optional="show" />
                             <field name="siren" optional="hide" />
                             <field name="siret" optional="hide" />
                             <field name="ape" optional="hide" />
@@ -54,6 +55,12 @@
         <field name="model">fr.siret.lookup.line</field>
         <field name="arch" type="xml">
             <form string="Company">
+                <widget
+                    name="web_ribbon"
+                    title="Closed"
+                    bg_color="text-bg-danger"
+                    invisible="active"
+                />
                 <h3>
                     <field name="name" />
                 </h3>
